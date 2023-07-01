@@ -79,8 +79,10 @@ body::after {
 }
 
 .order-form button {
+  font-weight: 800;
+  font-size: 18px;
   border: 1px solid white;
-  background-color: black;
+  background-color: #7e936a;
   height: 40px;
   color: white;
   cursor: pointer;
@@ -108,11 +110,11 @@ body::after {
   justify-content: center;
   align-items: center;
   height: 60vh;
-  gap: 20px;
+  gap: 10px;
 }
 
 .thankspage-tick {
-  width: 50px;
+  width: 30px;
 }
 
 .main-content {
@@ -168,4 +170,12 @@ button {
 }
 .admin-section:last-child {
   border-top: 1px dotted white;
+}
+
+.thankspage-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }

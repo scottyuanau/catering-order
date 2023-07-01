@@ -12,7 +12,6 @@ $db->connect();
 
 // Config
 $title = "Thanks";
-
 // Start output buffering (trap output, don't display it yet)
 ob_start();
 
@@ -31,7 +30,7 @@ if(isset($_POST['order'])) {
     $order->setItemId($meal);
     $order->setCoffee($coffee);
 
-    $order->insertOrder();
+    $_SESSION['orderNumber'] = $order->insertOrder();
 
     //get the current inventory quantity of the item
     $inventoryQuantity = $order->getInventoryQuantity($meal)["inventory"];

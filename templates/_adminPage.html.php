@@ -3,13 +3,15 @@
 <h2>Manage Orders</h2>
 <table id="admin-order-table">
     <tr>
-        <th>Customer Name</th>
+        <th>Order ID</th>
+        <th>Name</th>
         <th>Order Item</th>
         <th>Coffee</th>
         <th>Action</th>
     </tr>
 <?php foreach($orders as $order):?>
     <tr>
+    <td><?=$order["orderId"]?></td>
 <td><?=$order["customerName"]?></td>
 <td class="food-name" data-item-id=<?= $dataItemId+$order["orderId"];?>><?=$ordersObj->getItemName($order["itemId"])["itemName"]?></td>
 <td class="coffee-name" data-item-id=<?= $dataItemId+$order["orderId"]+1;?>><?=$order["coffee"]?></td>

@@ -208,36 +208,6 @@ class Order
       // Execute SQL setting the second parameter to true means the primary key will be returned
       $value = $this->_db->executeNonQuery($stmt, true);
 
-      
-      // // get the current inventory amount
-      // $sql = <<<SQL
-      //   SELECT inventory
-      //   FROM item
-      //   WHERE itemId = :itemId
-      // SQL;
-      // $stmt->bindParam(":itemId", $this->_itemId, PDO::PARAM_INT);
-      // // Execute query
-      // $rows = $this->_db->executeSQL($stmt);
-      
-      // //reduce the inventory after a new order has been inserted
-      // $this->_inventory = $rows[0]["inventory"];
-      // $currentInventory = $this->_inventory - 1;
-
-      // //update inventory after the order has been inserted
-      // $sql = <<<SQL
-      //   UPDATE item
-      //   SET inventory = :inventory
-      //   WHERE itemId = :itemId
-      // SQL;
-      // $stmt = $this->_db->prepareStatement($sql);
-      // $stmt->bindParam(":itemId", $this->_itemId, PDO::PARAM_INT);
-      // $stmt->bindParam(":inventory", $currentInventory, PDO::PARAM_STR);
-      
-
-      // // Execute SQL setting the second parameter to true means the primary key will be returned
-      // $value = $this->_db->executeNonQuery($stmt, true);
-
-
       return $value;
 
     } catch (PDOException $e) {
