@@ -1,0 +1,19 @@
+@import url("./normalize.css");
+
+.site-wrapper {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  gap: 1rem;
+}
+
+.completed {
+  text-decoration: line-through;
+}
