@@ -33,3 +33,8 @@ window.addEventListener("load", function () {
     }
   });
 });
+
+//prevent page refresh to resubmit data again
+if (window.history.replaceState) {
+  window.history.replaceState(null, null, window.location.href);
+}

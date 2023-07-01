@@ -17,17 +17,34 @@ $title = "Thanks";
 ob_start();
 
 if(isset($_POST['order'])) {
+
     $name = $_POST['name'];
     $meal = $_POST['meal'];
     $coffee = $_POST['coffee'];
 
+    // capture the errors
+    $errors = [];
+
+    //initiate the current order object
     $order = new Order();
     $order->setCustomerName($name);
     $order->setItemId($meal);
     $order->setCoffee($coffee);
 
     $order->insertOrder();
+
+    //get the current inventory quantity of the item
+    $inventoryQuantity = $order->getInventoryQuantity($meal)["inventory"];
+    $inventoryQuantity--;  
+    $order->updateInventoryQuantity($meal,$inventoryQuantity);
+
+    //update inventory quantity after order has been inserted
+
+
     include_once "./templates/_thanksPage.html.php";
+
+    //prevent user refresh the page, automatically redirect to the thanks page after form has been submitted
+    header("Location: thanks.php");
 } else {
     
     // Include the page-specific template

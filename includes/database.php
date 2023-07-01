@@ -18,10 +18,10 @@ if (
     $relativeurl = $_SERVER['SERVER_NAME'] . ":8080/catering-order/";
 } else {
     // database config - remote
-    $dbServer = "sql209.infinityfree.com";
-    $dbDatabase = "if0_34496115_sports_warehouse";
-    $dbUsername = "if0_34496115";
-    $dbPassword = "IhFUpVKbzp";
+    $dbServer = "sql212.infinityfree.com";
+    $dbDatabase = "if0_34534016_cateringorder";
+    $dbUsername = "if0_34534016";
+    $dbPassword = "j87YVkuOfvLk6";
     $relativeurl = $_SERVER['SERVER_NAME'] . "/";
 }
 

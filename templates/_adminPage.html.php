@@ -1,5 +1,6 @@
 <h1>Admin Page</h1>
 
+<h2>Manage Orders</h2>
 <table id="admin-order-table">
     <tr>
         <th>Customer Name</th>
@@ -21,3 +22,21 @@
 <?php endforeach ?>
 
 </table>
+
+<h2>Manage Inventory</h2>
+<form action="admin.php" method="post">
+
+<?php foreach($inventories as $inventory):?>
+<div class="form-row">
+<label for="item<?=$inventory["itemId"]?>"><?=$inventory["itemName"]?>: </label>
+<input type="hidden" value="<?=$inventory["itemId"]?>" name="item<?=$inventory["itemId"]?>">
+<input type="text" value="" name="itemQuantity<?=$inventory["itemId"]?>">
+<button type="submit" name="setQuantity<?=$inventory["itemId"]?>">Set Quantity</button>
+</div>
+<div class="form-row">
+<?=$inventory["itemName"]?> Available: <?=$ordersObj->getInventoryQuantity($inventory["itemId"])["inventory"]?>
+</div>
+
+<?php endforeach?>
+
+</form>

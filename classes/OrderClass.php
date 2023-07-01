@@ -13,6 +13,7 @@ class Order
   private $_itemId;
   private $_coffee;
   private $_db;
+  private $_inventory;
 
   /*
    * Constructor - sets up the database connection (using DBAccess)
@@ -206,6 +207,37 @@ class Order
 
       // Execute SQL setting the second parameter to true means the primary key will be returned
       $value = $this->_db->executeNonQuery($stmt, true);
+
+      
+      // // get the current inventory amount
+      // $sql = <<<SQL
+      //   SELECT inventory
+      //   FROM item
+      //   WHERE itemId = :itemId
+      // SQL;
+      // $stmt->bindParam(":itemId", $this->_itemId, PDO::PARAM_INT);
+      // // Execute query
+      // $rows = $this->_db->executeSQL($stmt);
+      
+      // //reduce the inventory after a new order has been inserted
+      // $this->_inventory = $rows[0]["inventory"];
+      // $currentInventory = $this->_inventory - 1;
+
+      // //update inventory after the order has been inserted
+      // $sql = <<<SQL
+      //   UPDATE item
+      //   SET inventory = :inventory
+      //   WHERE itemId = :itemId
+      // SQL;
+      // $stmt = $this->_db->prepareStatement($sql);
+      // $stmt->bindParam(":itemId", $this->_itemId, PDO::PARAM_INT);
+      // $stmt->bindParam(":inventory", $currentInventory, PDO::PARAM_STR);
+      
+
+      // // Execute SQL setting the second parameter to true means the primary key will be returned
+      // $value = $this->_db->executeNonQuery($stmt, true);
+
+
       return $value;
 
     } catch (PDOException $e) {
@@ -256,6 +288,83 @@ class Order
   }
 
 
+
+  /**
+   * Get a inventory quantity with the ID
+   *
+   * @param  int $id The item id
+   * @return int the inventory quantity
+   */
+  public function getInventoryQuantity($id)
+  {
+    try {
+      // Open database connection
+      $this->_db->connect();
+
+      // Define SQL query, prepare statement, bind parameters
+      $sql = <<<SQL
+        SELECT  inventory
+        FROM    item
+        WHERE   itemId = :itemId
+      SQL;
+      $stmt = $this->_db->prepareStatement($sql);
+      $stmt->bindParam(":itemId", $id, PDO::PARAM_INT);
+
+      // Execute query
+      $rows = $this->_db->executeSQL($stmt);
+
+      //check if the category exists
+      if (count($rows) ===0 ) {
+        return false;
+      }
+
+      // Get the first (and only) row - we are searching by a unique primary key
+      $row = $rows[0];
+
+      // Populate the private properties with the retrieved values
+      return $row;
+    } catch (PDOException $e) {
+      
+      // Throw the exception back up a level (don't handle it here)
+      throw $e;
+    }
+  }
+
+
+   /**
+   * Update a inventory by ID using values in object properties
+   *
+   * @param  int $id The ID of the inventory product to update
+   * @param int $quantity The new quantity of the inventory
+   * @return bool True if update successful
+   */
+  public function updateInventoryQuantity($id, $quantity)
+  {
+    try {
+      // Open database connection
+      $this->_db->connect();
+
+      // Define SQL query, prepare statement, bind parameters
+      $sql = <<<SQL
+        UPDATE  item
+        SET     inventory = :inventory
+        WHERE   itemId = :itemId
+      SQL;
+      $stmt = $this->_db->prepareStatement($sql);
+      $stmt->bindParam(":inventory", $quantity, PDO::PARAM_INT);
+      $stmt->bindParam(":itemId", $id, PDO::PARAM_INT);
+    
+      // Execute SQL
+      $value = $this->_db->executeNonQuery($stmt, false);
+      return $value;
+
+    } catch (PDOException $e) {
+      throw $e;
+    }
+  }
+
+
+
   /**
    * Remove an order using the ID
    *
@@ -287,5 +396,37 @@ class Order
       throw $e;
     }
   }
+
+
+
+  /**
+   * Get all inventory quantity
+   *
+   * @return int the inventory quantity
+   */
+  public function getAllInventories()
+  {
+    try {
+      // Open database connection
+      $this->_db->connect();
+
+      // Define SQL query, prepare statement, bind parameters
+      $sql = <<<SQL
+        SELECT  *
+        FROM    item
+      SQL;
+      $stmt = $this->_db->prepareStatement($sql);
+
+      // Execute query
+      $rows = $this->_db->executeSQL($stmt);
+
+      return $rows;
+    } catch (PDOException $e) {
+      
+      // Throw the exception back up a level (don't handle it here)
+      throw $e;
+    }
+  }
+
 }
 

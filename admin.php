@@ -18,14 +18,50 @@ ob_start();
 
 $ordersObj = new Order();
 $orders = $ordersObj->getOrders();
+$inventories = $ordersObj->getAllInventories();
+
 
 //assign different values to preserve states
 $dataItemId = 0;
+
+//get items available
+
 
 if(isset($_POST["completed"])) {
     $orderId = $_POST["orderId"];
     $ordersObj->removeOrder($orderId);
 
+    //refreshes page after removing the order
+    header("Location: ".$_SERVER['PHP_SELF']);
+    include_once "./templates/_adminPage.html.php";
+} else if (isset($_POST["setQuantity1"])) {
+    $itemId = $_POST["item1"];
+    $quantity = $_POST["itemQuantity1"];
+
+    //update the inventory
+    $ordersObj->updateInventoryQuantity($itemId,$quantity);
+    //refreshes page after removing the order
+    header("Location: ".$_SERVER['PHP_SELF']);
+    include_once "./templates/_adminPage.html.php";
+} 
+else if (isset($_POST["setQuantity2"])) {
+    $itemId = $_POST["item2"];
+    $quantity = $_POST["itemQuantity2"];
+
+    //update the inventory
+    $ordersObj->updateInventoryQuantity($itemId,$quantity);
+    
+    //refreshes page after removing the order
+    header("Location: ".$_SERVER['PHP_SELF']);
+    include_once "./templates/_adminPage.html.php";
+}
+else if (isset($_POST["setQuantity3"])) {
+    $itemId = $_POST["item3"];
+    $quantity = $_POST["itemQuantity3"];
+
+    //update the inventory
+    $ordersObj->updateInventoryQuantity($itemId,$quantity);
+    
     //refreshes page after removing the order
     header("Location: ".$_SERVER['PHP_SELF']);
     include_once "./templates/_adminPage.html.php";
@@ -40,6 +76,49 @@ $output = ob_get_clean();
 
 // Include layout template
 include_once "./templates/_layout.html.php";
+
+
+
+// Functions to handle loading data into the form
+
+/**
+ * Set an HTML-safe value of a form field from $_POST data.
+ * @param string $fieldName The name of field to display.
+ * @return string The HTML entity encoded output for the form field.
+ */
+function setValue($fieldName)
+{
+    return htmlspecialchars($_POST[$fieldName] ?? "");
+}
+
+/**
+ * Return the "checked" attribute if the field value is checked.
+ * @param string $fieldName The name of field to check.
+ * @param string $fieldValue The value of field to check.
+ * @return string The "checked" attribute if field value is checked.
+ */
+function setChecked($fieldName, $fieldValue)
+{
+    return ($_POST[$fieldName] ?? "") === $fieldValue ? "checked" : "";
+
+    // if (isset($_POST[$fieldName]) && $_POST[$fieldName] === $fieldValue) {
+    //   return "checked";
+    // }
+
+    // return "";
+}
+
+/**
+ * Return the "selected" attribute if the field value is selected.
+ * @param string $fieldName The name of field to check.
+ * @param string $fieldValue The value of field to check.
+ * @return string The "selected" attribute if field value is selected.
+ */
+function setSelected($fieldName, $fieldValue)
+{
+    return ($_POST[$fieldName] ?? "") === $fieldValue ? "selected" : "";
+}
+
 
 // Close database connection
 $db->disconnect();
