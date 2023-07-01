@@ -23,7 +23,7 @@
         </main>
 
         <?php
-        // footer
+        include "./templates/_footer.html.php";
         ?>
 
     </div>

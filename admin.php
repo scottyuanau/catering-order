@@ -16,6 +16,26 @@ $title = "Admin";
 // Start output buffering (trap output, don't display it yet)
 ob_start();
 
+
+
+// if user is not logged in, redirect to the login page
+if (!isset($_SESSION['user']) || !isset($_SESSION['username'])) {
+    header("Location: login.php");
+}
+
+// if user is not admin, advise user that only admin is allowed
+if ($_SESSION['username'] !== 'admin') {
+    echo "Only admin is allowed to access this page";
+}
+
+
+
+// Check if the user is not logged in as admin
+if (isset($_SESSION['user']) && $_SESSION['username'] === 'admin' ) {
+
+
+
+
 $ordersObj = new Order();
 $orders = $ordersObj->getOrders();
 $inventories = $ordersObj->getAllInventories();
@@ -69,7 +89,7 @@ else if (isset($_POST["setQuantity3"])) {
 
 // Include the page-specific template
 include_once "./templates/_adminPage.html.php";
-
+}
 
 // Stop output buffering - store output into our $output variable
 $output = ob_get_clean();

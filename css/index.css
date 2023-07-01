@@ -40,8 +40,9 @@ body::after {
 }
 
 .site-wrapper {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr 6fr 1fr;
+  justify-content: center;
   align-items: center;
   height: 100vh;
 }
@@ -62,6 +63,12 @@ body::after {
   width: 200px;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+.logo-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .order-form input {
@@ -119,6 +126,9 @@ body::after {
 
 .main-content {
   padding: 0px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #admin-order-table {
@@ -178,4 +188,64 @@ button {
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+
+.footer-paragraph {
+  font-size: 12px;
+  text-align: center;
+}
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.login-form input {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid white;
+  padding-left: 5px;
+}
+
+.error-summary {
+  border: 1px solid rgb(121, 0, 0);
+  background-color: pink;
+  color: rgb(121, 0, 0);
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.login-wrapper {
+  width: 300px;
+}
+
+.login-button {
+  font-weight: 800;
+  font-size: 18px;
+  border: 1px solid white;
+  background-color: #7e936a;
+  height: 40px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+.login-link {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.login-link a {
+  color: white;
+  text-decoration: none;
 }
