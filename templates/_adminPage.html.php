@@ -1,5 +1,5 @@
 <h1>Admin Page</h1>
-
+<section class="admin-section">
 <h2>Manage Orders</h2>
 <table id="admin-order-table">
     <tr>
@@ -16,15 +16,17 @@
 <td>
     <form action="admin.php" method="post">
     <input type="hidden" name="orderId" value="<?=$order["orderId"]?>">
-    <button type="submit" name="completed">Completed</button></form>
+    <button type="submit" name="completed">Done</button></form>
 </td>
 </tr>
 <?php endforeach ?>
 
 </table>
+</section>
 
+<section class="admin-section">
 <h2>Manage Inventory</h2>
-<form action="admin.php" method="post">
+<form action="admin.php" method="post" class="manage-inventory-form">
 
 <?php foreach($inventories as $inventory):?>
 <div class="form-row">
@@ -33,10 +35,11 @@
 <input type="text" value="" name="itemQuantity<?=$inventory["itemId"]?>">
 <button type="submit" name="setQuantity<?=$inventory["itemId"]?>">Set Quantity</button>
 </div>
-<div class="form-row">
-<?=$inventory["itemName"]?> Available: <?=$ordersObj->getInventoryQuantity($inventory["itemId"])["inventory"]?>
+<div class="form-row-current">
+Current Quantity: <?=$ordersObj->getInventoryQuantity($inventory["itemId"])["inventory"]?>
 </div>
 
 <?php endforeach?>
 
 </form>
+</section>

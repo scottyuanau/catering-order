@@ -40,7 +40,6 @@ body::after {
 }
 
 .site-wrapper {
-  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,6 +54,7 @@ body::after {
 }
 
 .completed {
+  background-color: green;
   text-decoration: line-through;
 }
 
@@ -113,4 +113,59 @@ body::after {
 
 .thankspage-tick {
   width: 50px;
+}
+
+.main-content {
+  padding: 0px 10px 10px 10px;
+}
+
+#admin-order-table {
+  border: 1px solid white;
+}
+
+#admin-order-table th {
+  background-color: white;
+  color: black;
+}
+
+#admin-order-table td {
+  cursor: pointer;
+}
+
+.manage-inventory-form .form-row {
+  display: grid;
+  grid-template-columns: 4fr 1fr 2fr;
+  align-items: center;
+  gap: 5px;
+}
+
+.manage-inventory-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 430px;
+}
+
+.manage-inventory-form input {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-left: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.form-row-current {
+  padding-bottom: 5px;
+  border-bottom: 1px dotted white;
+}
+
+button {
+  cursor: pointer;
+}
+
+.admin-section {
+  margin-top: 40px;
+}
+.admin-section:last-child {
+  border-top: 1px dotted white;
 }
