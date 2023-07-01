@@ -43,3 +43,4 @@ Current Quantity: <?=$ordersObj->getInventoryQuantity($inventory["itemId"])["inv
 
 </form>
 </section>
+<script src="./js/admin.js"></script>

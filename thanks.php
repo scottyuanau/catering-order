@@ -17,10 +17,7 @@ $title = "Thanks";
 ob_start();
 
 if(isset($_POST['order'])) {
-    if (isset($_SESSION['form_submitted']) && $_SESSION['form_submitted'] === true) {
-        // Form has already been submitted, handle the duplicate submission
-        include_once "./templates/_handleDuplicatesPage.html.php";
-    } else {
+    
     $name = $_POST['name'];
     $meal = $_POST['meal'];
     $coffee = $_POST['coffee'];
@@ -45,10 +42,10 @@ if(isset($_POST['order'])) {
 
 
     include_once "./templates/_thanksPage.html.php";
-    $_SESSION['form_submitted'] = true;
+    
     //prevent user refresh the page, automatically redirect to the thanks page after form has been submitted
     header("Location: thanks.php");
-    }
+    
 } else {
     
     // Include the page-specific template
