@@ -8,7 +8,7 @@
     <input type="text" name="username">
     <label for="password">Password: </label>
     <input type="password" name="password">
-    <button type="submit" name="login" class="login-button">Login</button>
+    <button type="submit" name="login" class="main-button">Login</button>
     
 </form>
 <!-- <a href="./changePassword.php"><button class="button_changePassword">Change Password</button></a> -->

@@ -68,7 +68,9 @@ body::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  max-width: 400px;
 }
 
 .order-form input {
@@ -83,23 +85,6 @@ body::after {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid black;
-}
-
-.order-form button {
-  font-weight: 800;
-  font-size: 18px;
-  border: 1px solid white;
-  background-color: #7e936a;
-  height: 40px;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.2s;
-}
-
-.order-form button:hover {
-  background-color: white;
-  color: black;
 }
 
 .homepage-h1 {
@@ -223,11 +208,7 @@ button {
   border-radius: 5px;
 }
 
-.login-wrapper {
-  width: 300px;
-}
-
-.login-button {
+.main-button {
   font-weight: 800;
   font-size: 18px;
   border: 1px solid white;
@@ -237,6 +218,11 @@ button {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.2s;
+}
+
+.main-button:hover {
+  background-color: white;
+  color: black;
 }
 
 .login-link {

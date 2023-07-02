@@ -14,5 +14,5 @@
   <lable for="coffee">Your Drink:*</lable>
 <input name="coffee" type="text" placeholder="e.g. soy flat white, cap, almond latte, etc" required>
 
-<button type="submit" name="order">Order Now</button>
+<button type="submit" name="order" class="main-button">Order Now</button>
 </form>
