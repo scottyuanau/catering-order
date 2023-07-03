@@ -1,5 +1,6 @@
 <h1 class="homepage-h1">Welcome</h1>
 <p>Select your meal & coffee, and we will serve to you.</p>
+<?php include "./templates/_formErrorSummary.html.php";?>
 <form action="thanks.php" method="post" class="order-form">
 <lable for="name">Your Name*</lable>
 <input name="name" type="text" placeholder="enter your name..."  required>

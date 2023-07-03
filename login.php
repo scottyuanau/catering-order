@@ -34,12 +34,12 @@ if (isset($_POST["login"])) {
         //login success as admin, redirect to the admin page.
         $_SESSION['user'] = $login->getUserId();
         $_SESSION['username'] = $login->getUserName();
-        header("Location: admin.php"); 
+        header("Location: ./admin.php"); 
     } else if ($result ==='success' && $login->getUserId() !== 2) {
         //login success as other users, redirect to the home page.
         $_SESSION['user'] = $login->getUserId();
         $_SESSION['username'] = $login->getUserName();
-        header("Location: index.php"); 
+        header("Location: ./index.php"); 
     } else if ($result === 'incorrect password') {
         $_SESSION['user'] = 0;
         $errors['incorrect-password'] = 'Password is incorrect, please try again.';

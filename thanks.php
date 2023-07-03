@@ -30,10 +30,24 @@ if(isset($_POST['order'])) {
     $order->setItemId($meal);
     $order->setCoffee($coffee);
 
+    //check current inventory level before inserting the order
+    $currentInventoryQuantity = $order->getInventoryQuantity($meal)["inventory"];
+    if ($currentInventoryQuantity <=0) {
+        $_SESSION['errors'] = ["The meal has sold out, please select another meal instead."];
+        header("Location: index.php");
+        exit;
+    }
+
+
     $_SESSION['orderNumber'] = $order->insertOrder();
 
     //get the current inventory quantity of the item
     $inventoryQuantity = $order->getInventoryQuantity($meal)["inventory"];
+
+
+    
+
+
     $inventoryQuantity--;  
     $order->updateInventoryQuantity($meal,$inventoryQuantity);
 
